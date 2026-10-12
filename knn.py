@@ -1,18 +1,15 @@
 import streamlit as st
 import mysql.connector
-import tomllib
 import math
 import time
 st.header("Implementation of K Nearest Neighbour")
 st.divider()
-with open("config.toml","rb") as file:
-    config=tomllib.load(file)
 connection=mysql.connector.connect(
-    host=config["mysql"]["host"],
-    user=config["mysql"]["user"],
-    password=config["mysql"]["password"],
-    database=config["mysql"]["database"],
-    port=config["mysql"]["port"]
+    host=st.secrets["mysql"]["host"],
+    user=st.secrets["mysql"]["user"],
+    password=st.secrets["mysql"]["password"],
+    database=st.secrets["mysql"]["database"],
+    port=st.secrets["mysql"]["port"]
 )
 cursor=connection.cursor(dictionary=True)
 sql="""
